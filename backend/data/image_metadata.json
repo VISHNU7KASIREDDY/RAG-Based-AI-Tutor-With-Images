@@ -1,0 +1,44 @@
+[
+  {
+    "id": "img_001",
+    "filename": "images/bell.png",
+    "title": "Bell Vibration",
+    "keywords": ["bell", "vibration", "sound", "waves"],
+    "description": "A bell producing vibrations that create sound waves traveling through the air"
+  },
+  {
+    "id": "img_002", 
+    "filename": "images/sound_wave.png",
+    "title": "Sound Wave Diagram",
+    "keywords": ["sound wave", "frequency", "amplitude", "wavelength", "crest", "trough"],
+    "description": "Diagram showing a sound wave with labeled frequency amplitude and wavelength"
+  },
+  {
+    "id": "img_003",
+    "filename": "images/longitudinal_wave.png", 
+    "title": "Longitudinal Wave",
+    "keywords": ["longitudinal", "compression", "rarefaction", "wave", "sound"],
+    "description": "Longitudinal wave showing compression and rarefaction regions of sound"
+  },
+  {
+    "id": "img_004",
+    "filename": "images/reflection_echo.png",
+    "title": "Echo and Reflection",
+    "keywords": ["echo", "reflection", "sound", "wall", "bounce"],
+    "description": "Sound wave reflecting off a wall to produce an echo"
+  },
+  {
+    "id": "img_005",
+    "filename": "images/frequency_amplitude.png",
+    "title": "Frequency and Pitch",
+    "keywords": ["frequency", "pitch", "high", "low", "sound", "hertz"],
+    "description": "Comparison of high frequency and low frequency sound waves showing pitch difference"
+  },
+  {
+    "id": "img_006",
+    "filename": "images/human_ear.png",
+    "title": "Human Ear and Sound",
+    "keywords": ["ear", "hearing", "sound", "eardrum", "vibration"],
+    "description": "Human ear diagram showing how sound vibrations are detected and processed"
+  }
+]
