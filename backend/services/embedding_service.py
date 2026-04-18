@@ -21,7 +21,7 @@ def _get_model() -> TextEmbedding:
 def generate_embeddings(texts: List[str]) -> np.ndarray:
   """Return L2-normalised embeddings for a list of strings."""
   model = _get_model()
-  embeddings = np.array(list(model.embed(texts)))
+  embeddings = np.array(list(model.embed(texts))).astype("float32")
   faiss.normalize_L2(embeddings)
   return embeddings
 def generate_single_embedding(text: str) -> np.ndarray:
