@@ -46,7 +46,7 @@ def _load_or_generate_embeddings() -> List[dict]:
     model = _get_model()
     for img in metadata:
         combined = img["title"] + " " + img["description"] + " " + " ".join(img.get("keywords", []))
-        emb = model.encode([combined])[0]
+        emb = list(model.embed([combined]))[0]
         _image_embeddings.append({
             "id": img["id"],
             "embedding": emb.tolist()
@@ -63,7 +63,7 @@ def get_embedding_by_id(img_id: str, image_embeddings: List[dict]) -> np.ndarray
     return np.zeros(384)
 
 def get_relevant_image(query: str, image_metadata: List[dict], image_embeddings: List[dict], model) -> Optional[dict]:
-    query_embedding = model.encode([query])[0]
+    query_embedding = list(model.embed([query]))[0]
     
     best_score = -1
     best_image = None

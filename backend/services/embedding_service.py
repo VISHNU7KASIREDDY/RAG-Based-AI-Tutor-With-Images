@@ -6,22 +6,22 @@ from pathlib import Path
 from typing import Dict, List, Optional, Tuple
 import faiss
 import numpy as np
-from sentence_transformers import SentenceTransformer
+from fastembed import TextEmbedding
 logger = logging.getLogger(__name__)
 MODEL_NAME = "all-MiniLM-L6-v2"
-_model: Optional[SentenceTransformer] = None
+_model: Optional[TextEmbedding] = None
 DATA_DIR = Path(__file__).resolve().parent.parent / "data"
-def _get_model() -> SentenceTransformer:
+def _get_model() -> TextEmbedding:
   """Lazy-load the embedding model."""
   global _model
   if _model is None:
-    logger.info("Loading SentenceTransformer model: %s", MODEL_NAME)
-    _model = SentenceTransformer(MODEL_NAME)
+    logger.info("Loading FastEmbed model: %s", MODEL_NAME)
+    _model = TextEmbedding(f"sentence-transformers/{MODEL_NAME}")
   return _model
 def generate_embeddings(texts: List[str]) -> np.ndarray:
   """Return L2-normalised embeddings for a list of strings."""
   model = _get_model()
-  embeddings = model.encode(texts, show_progress_bar=False, convert_to_numpy=True)
+  embeddings = np.array(list(model.embed(texts)))
   faiss.normalize_L2(embeddings)
   return embeddings
 def generate_single_embedding(text: str) -> np.ndarray:

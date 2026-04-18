@@ -9,9 +9,7 @@ pydantic>=2.6.0
 PyMuPDF>=1.24.0
 
 # Embeddings & vector store
---extra-index-url https://download.pytorch.org/whl/cpu
-torch>=2.0.0
-sentence-transformers>=2.6.0
+fastembed>=0.2.0
 faiss-cpu>=1.8.0
 numpy>=1.26.0
 
