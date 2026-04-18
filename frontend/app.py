@@ -143,7 +143,7 @@ with st.sidebar:
       with st.spinner(" Extracting text & building index…"):
         try:
           files = {"file": (uploaded_file.name, uploaded_file.getvalue(), "application/pdf")}
-          resp = requests.post(f"{API_BASE}/upload", files=files, timeout=120)
+          resp = requests.post(f"{API_BASE.rstrip('/')}/upload", files=files, timeout=120)
           resp.raise_for_status()
           data = resp.json()
           st.session_state.topic_id = data["topicId"]
@@ -207,7 +207,7 @@ for entry in st.session_state.chat_history:
   st.markdown(f'<div class="bot-msg"> {entry["answer"]}</div>', unsafe_allow_html=True)
   if entry.get("image"):
     img = entry["image"]
-    image_url = f"{API_BASE}/{img['filename']}"
+    image_url = f"{API_BASE.rstrip('/')}/{img['filename']}"
     st.markdown(
       f'<div class="response-image">\n'
       f'  <img src="{image_url}" alt="{img["title"]}" style="max-width:300px; margin-top:10px;" />\n'
@@ -232,7 +232,7 @@ if query:
         "query": query,
       }
       params = {"debug": "true"} if debug_mode else {}
-      resp = requests.post(f"{API_BASE}/chat", json=payload, params=params, timeout=60)
+      resp = requests.post(f"{API_BASE.rstrip('/')}/chat", json=payload, params=params, timeout=60)
       resp.raise_for_status()
       data = resp.json()
       st.session_state.chat_history.append({
