@@ -15,8 +15,8 @@ def _get_model() -> TextEmbedding:
   """Lazy-load the embedding model."""
   global _model
   if _model is None:
-    logger.info("Loading FastEmbed model: %s", MODEL_NAME)
-    _model = TextEmbedding(f"sentence-transformers/{MODEL_NAME}")
+    logger.info("Loading FastEmbed model: %s (threads=1)", MODEL_NAME)
+    _model = TextEmbedding(f"sentence-transformers/{MODEL_NAME}", threads=1)
   return _model
 def generate_embeddings(texts: List[str]) -> np.ndarray:
   """Return L2-normalised embeddings for a list of strings."""
