@@ -3,11 +3,18 @@ RAG AI Tutor — Streamlit Frontend
 Run with:
   cd frontend && streamlit run app.py
 """
+import os
 import requests
 import streamlit as st
 from pathlib import Path
-import os
-API_BASE = os.getenv("API_BASE", "http://localhost:8000")
+
+API_BASE = os.getenv("API_BASE", None)
+if not API_BASE:
+    try:
+        API_BASE = st.secrets.get("API_BASE", "http://localhost:8000")
+    except Exception:
+        API_BASE = "http://localhost:8000"
+
 st.set_page_config(
   page_title=" RAG AI Tutor",
   page_icon="",
@@ -145,7 +152,7 @@ with st.sidebar:
           st.session_state.chat_history = []
           st.success(" PDF processed — you can now ask questions")
         except requests.exceptions.ConnectionError:
-          st.error(" Cannot reach the backend. Make sure it's running on port 8000.")
+          st.error(f" Cannot reach the backend. Make sure it's running. (Attempted: {API_BASE})")
         except Exception:
           st.error(" Something went wrong, try again.")
   st.markdown("---")
@@ -236,6 +243,6 @@ if query:
       })
       st.rerun()
     except requests.exceptions.ConnectionError:
-      st.error(" Cannot reach the backend. Make sure it's running on port 8000.")
+      st.error(f" Cannot reach the backend. Make sure it's running. (Attempted: {API_BASE})")
     except Exception:
       st.error(" Something went wrong, try again.")
