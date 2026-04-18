@@ -6,7 +6,8 @@ Run with:
 import requests
 import streamlit as st
 from pathlib import Path
-API_BASE = "http://localhost:8000"
+import os
+API_BASE = os.getenv("API_BASE", "http://localhost:8000")
 st.set_page_config(
   page_title=" RAG AI Tutor",
   page_icon="",
@@ -172,8 +173,8 @@ with st.sidebar:
       st.rerun()
   st.markdown("---")
   st.markdown(
-    "Built with using\n"
-    "**FastAPI** · **Streamlit** · **FAISS** · **sentence-transformers**"
+    "Built with \n"
+    "**FastAPI** · **Streamlit** · **FAISS** · **FastEmbed**"
   )
 st.markdown(
   '<div class="main-header">'
